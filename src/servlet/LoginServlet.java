@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ObentoDAO;
 import dao.UserDAO;
+import model.Obento;
 import model.User;
 
 /**
@@ -64,14 +66,19 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(password);
 
 		// ▼▼ログイン用処理▼▼
-		UserDAO userDAO = new UserDAO();
+		UserDAO userDao = new UserDAO();
 		User us = new User();
 
-		// ログインユーザー情報を探す
-		us = userDAO.selectLoginUser(user_id, password);
+		ObentoDAO obentoDao = new ObentoDAO();
+		Obento ob = new Obento();
 
-		String cnt_user = userDAO.CountUser();
-		String voted_user = userDAO.CountVotedUser();
+		obentoDao.selectAllObento();
+
+		// ログインユーザー情報を探す
+		us = userDao.selectLoginUser(user_id, password);
+
+		String cnt_user = userDao.CountUser();
+		String voted_user = userDao.CountVotedUser();
 		HttpSession session = request.getSession();
 
 		// ログイン処理
