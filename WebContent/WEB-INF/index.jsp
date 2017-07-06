@@ -17,7 +17,7 @@
 	</div>
 	<div class="container">
 		<!--  Loginサーブレットに送信 -->
-		<form action="<%=request.getContextPath()%>/" method="post" >
+		<form action="<%=request.getContextPath()%>/LoginServlet" method="post" >
 			<div class="form-group">
 				<label>ユーザーID</label>
 				<div class="row">
