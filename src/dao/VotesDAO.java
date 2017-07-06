@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-
-
 public class VotesDAO {
 	// データソース
 	DataSource ds = null;
