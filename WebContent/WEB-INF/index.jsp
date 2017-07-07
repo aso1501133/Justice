@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 
-	<h1>週間スケジュール</h1>
+	<h1>投票システム</h1>
 	</div>
 	<div class="container">
 		<!--  Loginサーブレットに送信 -->
@@ -22,7 +22,7 @@
 				<label>ユーザーID</label>
 				<div class="row">
 					<div class="col-xs-3">
-						<input type="text" name="userID" class="form-control" placeholder="ユーザーID">
+						<input type="text" name="user_id" class="form-control" placeholder="ユーザーID">
 					</div>
 				</div>
 			</div>
