@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 		// ログイン処理
 		String path = "";
 		if (us != null && us.getVote().equals("0")) { // 未投票ならG202に遷移
-			path = "WEB-INF/jsp/G202.jsp";
+			path = "WEB-INF/jsp/102.jsp";
 			// セッションスコープにログインユーザー情報を保存
 			session.setAttribute("loginUser", us.getUser_id());
 			session.setAttribute("loginUser", us.getVote());
@@ -101,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 			 * }
 			 */
 
-			path = "WEB-INF/jsp/G201.jsp";
+			path = "WEB-INF/jsp/G101.jsp";
 		} else { // 不一致なら
 			request.setAttribute("alart"," no");
 			path = "WEB-INF/index.jsp";
