@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 
-	<h1>週間スケジュール</h1>
+	<h1>お弁当投票システム</h1>
 	</div>
 	<div class="container">
 		<!--  Loginサーブレットに送信 -->
@@ -22,7 +22,7 @@
 				<label>ユーザーID</label>
 				<div class="row">
 					<div class="col-xs-3">
-						<input type="text" name="user_id" class="form-control" placeholder="ユーザーID">
+						<input type="text" name="user_id" class="form-control" placeholder="学生番号">
 					</div>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 				<label>パスワード</label>
 				<div class="row">
 					<div class="col-xs-3">
-						<input type="text" name="password" class="form-control" placeholder="パスワード">
+						<input type="text" name="password" class="form-control" placeholder="誕生日">
 					</div>
 				</div>
 			</div>
