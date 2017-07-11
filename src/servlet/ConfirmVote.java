@@ -44,6 +44,7 @@ public class ConfirmVote extends HttpServlet {
 
 		// リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
+
 		String bento_id = request.getParameter("bento_id");
 		String comment = request.getParameter("comment");
 

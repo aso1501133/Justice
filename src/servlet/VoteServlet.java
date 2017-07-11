@@ -44,9 +44,6 @@ public class VoteServlet extends HttpServlet {
 		// リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
 
-		System.out.println("bento_id:" + request.getParameter("bento_id"));
-		System.out.println("bento_id:" + request.getParameter("comment"));
-
 		String bento_id = request.getParameter("bento_id");
 		String comment = request.getParameter("comment");
 

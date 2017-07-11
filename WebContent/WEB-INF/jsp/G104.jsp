@@ -24,14 +24,21 @@ comm:投票確認画面
 						<td><img src="img/<c:out value="${od.image}" />.jpg"
 							width="500px"></td>
 					</tr>
-				</c:forEach>
 			</table>
 
+			<p>コメント：</p>
 			${requestScope.comment}
-
-			<p>以上の内容で投票しますか</p>
-
-
+			<p>以上の内容で投票しますか？</p>
+			<form action="<%=request.getContextPath()%>/VoteServlet"
+				method="post">
+				<div class="form-group">
+					<input type="hidden" name="bento_id" value="${od.bento_id}">
+					<input type="hidden" name="comment" value="${requestScope.comment}">
+					<input type="submit" name="vote" value="OK">
+					<a href="#" onclick="javascript:window.history.back(-1);return false;"><button type="button" name="cancel" value="キャンセル">キャンセル</button></a>
+					</div>
+			</form>
+			</c:forEach>
 		</div>
 	</div>
 </body>
