@@ -3,9 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import model.Votes;
 
 public class VotesDAO {
 	// データソース
@@ -44,6 +48,80 @@ public class VotesDAO {
 		}
 		if (con != null) {
 			con.close();
+		}
+	}
+
+	/**
+	 * votesテーブルから現行票を検索
+	 */
+	public List<Votes> selectVotes(String bento_id){
+		// スケジュール情報を格納
+		// ▼▼List（大きさが決まっていない配列のようなもの）、メッセージ格納用変数 準備
+		List<Votes> list = new ArrayList<Votes>();
+
+		try {
+			// DB接続
+			connection();
+			// SQL文設定の準備・SQL文の実行
+			String sql = "SELECT * FROM votes WHERE bento_id = ?;";
+			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
+
+			// ユーザの入力値を代入
+			stmt.setString(1, bento_id);
+
+			// sql文を実行
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Votes vo = new Votes();
+				// 1件分のデータをBeanに格納し、それをListに入れてjspに渡す
+				// DBから取得したデータをObentoオブジェクトに格納
+				vo.setBento_id(rs.getString("bento_id"));
+				vo.setVotes(rs.getString("votes"));
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			Votes vo = new Votes();
+			vo = null;
+			System.out.println("muri");
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
+		}
+		// 全員分のデータが入ったlistをサーブレットに渡す
+		return list;
+	}
+
+	/**
+	 * votesテーブルに一票追加
+	 */
+	public void setVote(String bento_id,int newvote) {
+		try {
+			// DB接続
+			connection();
+			// INSERT文の設定・実行
+			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
+
+			String sql = "UPDATE votes SET votes=? WHERE bento_id = ?";
+
+			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
+			stmt.setInt(1, newvote);
+			stmt.setString(2, bento_id);
+
+			// sql文を実行
+			int cnt = stmt.executeUpdate();
+
+			// コミット
+			con.commit();
+
+		} catch (Exception e) {
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
 		}
 	}
 
