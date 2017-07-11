@@ -18,58 +18,55 @@ import model.User;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet(name = "LoginSevlet", urlPatterns = { "/LoginSevlet" })
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at:
+		// ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		// doGet(request, response);
 		// リクエストパラメータの取得
-				request.setCharacterEncoding("UTF-8");
-				String user_id = request.getParameter("user_id");
-				String password = request.getParameter("password");
+		request.setCharacterEncoding("UTF-8");
+		String user_id = request.getParameter("user_id");
+		String password = request.getParameter("password");
 
-				// 確認
-				System.out.println(user_id);
-				System.out.println(password);
+		// 確認
+		System.out.println(user_id);
+		System.out.println(password);
 
-				// ▼▼ログイン用処理▼▼
-				UserDAO userDao = new UserDAO();
-				User us = new User();
+		// ▼▼ログイン用処理▼▼
+		UserDAO userDao = new UserDAO();
+		User us = new User();
 
-				ObentoDAO obentoDao = new ObentoDAO();
-				Obento ob = new Obento();
+		ObentoDAO obentoDao = new ObentoDAO();
+		Obento ob = new Obento();
 
-				obentoDao.selectAllObento();
+		obentoDao.selectAllObento();
 
-				// ログインユーザー情報を探す
-				us = userDao.selectLoginUser(user_id, password);
+		// ログインユーザー情報を探す
+		us = userDao.selectLoginUser(user_id, password);
 
-				String cnt_user = userDao.CountUser();
-				String voted_user = userDao.CountVotedUser();
-				HttpSession session = request.getSession();
+		String cnt_user = userDao.CountUser();
+		String voted_user = userDao.CountVotedUser();
+		HttpSession session = request.getSession();
 
-<<<<<<< HEAD
 		// ログイン処理
 		String path = "";
 		if (cnt_user != voted_user) {
@@ -77,58 +74,49 @@ public class LoginServlet extends HttpServlet {
 			// セッションスコープにログインユーザー情報を保存
 			session.setAttribute("loginUser", us.getUser_id());
 			session.setAttribute("loginUser", us.getVote());
-		} else if(cnt_user.equals(voted_user)){
+		} else if (cnt_user.equals(voted_user)) {
 			path = "kadai3/Ranking";
 			// セッションスコープにログインユーザー情報を保存
 			session.setAttribute("loginUser", us.getUser_id());
 			/*
-			 * //▼▼▼中身確認▼▼▼
-			 * List<Schedule> lit = scheduleDAO.selectSchedule(userID);
-			 * for(Schedule lit2 : lit){
+			 * //▼▼▼中身確認▼▼▼ List<Schedule> lit =
+			 * scheduleDAO.selectSchedule(userID); for(Schedule lit2 : lit){
 			 * System.out.println(lit2.getWeek());
-			 * System.out.println(lit2.getPlan());
-			 * }
+			 * System.out.println(lit2.getPlan()); }
 			 */
-=======
-				// ログイン処理
-				String path = "";
-				if (us != null && us.getVote().equals("0")) { // 未投票ならG202に遷移
-					path = "WEB-INF/jsp/102.jsp";
-					// セッションスコープにログインユーザー情報を保存
-					session.setAttribute("loginUser", us.getUser_id());
-					session.setAttribute("loginUser", us.getVote());
-				} else if (us != null && us.getVote().equals("1")) { // 投票済ならG201に遷移
-					// セッションスコープにログインユーザー情報を保存
-					session.setAttribute("loginUser", us.getUser_id());
-					session.setAttribute("loginUser", us.getVote());
-					/*
-					 * //▼▼▼中身確認▼▼▼
-					 * List<Schedule> lit = scheduleDAO.selectSchedule(userID);
-					 * for(Schedule lit2 : lit){
-					 * System.out.println(lit2.getWeek());
-					 * System.out.println(lit2.getPlan());
-					 * }
-					 */
->>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
 
-<<<<<<< HEAD
+			// ログイン処理
+			String path = "";
+			if (us != null && us.getVote().equals("0")) { // 未投票ならG202に遷移
+				path = "WEB-INF/jsp/102.jsp";
+				// セッションスコープにログインユーザー情報を保存
+				session.setAttribute("loginUser", us.getUser_id());
+				session.setAttribute("loginUser", us.getVote());
+			} else if (us != null && us.getVote().equals("1")) { // 投票済ならG201に遷移
+				// セッションスコープにログインユーザー情報を保存
+				session.setAttribute("loginUser", us.getUser_id());
+				session.setAttribute("loginUser", us.getVote());
+				/*
+				 * //▼▼▼中身確認▼▼▼ List<Schedule> lit =
+				 * scheduleDAO.selectSchedule(userID); for(Schedule lit2 : lit){
+				 * System.out.println(lit2.getWeek());
+				 * System.out.println(lit2.getPlan()); }
+				 */
+
+			} else { // 不一致なら
+				request.setAttribute("alart", " no");
+				path = "WEB-INF/index.jsp";
+			}
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
+
+			path = "WEB-INF/jsp/G101.jsp";
 		} else { // 不一致なら
-			request.setAttribute("alart"," no");
+			request.setAttribute("alart", " no");
 			path = "WEB-INF/index.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
-=======
-					path = "WEB-INF/jsp/G101.jsp";
-				} else { // 不一致なら
-					request.setAttribute("alart"," no");
-					path = "WEB-INF/index.jsp";
-				}
-				RequestDispatcher rd = request.getRequestDispatcher(path);
-				rd.forward(request, response);
-			}
-
->>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
 	}
 
-
+}
