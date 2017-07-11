@@ -26,21 +26,22 @@ comm:作品詳細画面
 					</tr>
 				</c:forEach>
 			</table>
-			<form action="<%=request.getContextPath()%>/VoteServlet"
-				method="post">
+			<form action="<%=request.getContextPath()%>/VoteServlet" method="post">
+			<div class="form-group">
 				<c:if test="${voted == '0'}" var="flg" />
 				<c:if test="${flg}">
 					<!-- 未投票なら投票ボタン表示 -->
 					<input type="hidden" name="obento_id" value="${od.obento_id}">
-					
-					<input type="text" name="comment" size="30" maxlength="40" value="ご感想をどうぞ">
-					
+
+					<input type="text" name="comment" size="30" maxlength="40" class="form-control" placeholder="ご感想をどうぞ">
+
 					<input type="submit" name="vote" value="投票する">
 				</c:if>
 
 				<c:if test="${!flg}">
 					<!-- 投票済なら投票ボタンを表示しない -->
 				</c:if>
+				</div>
 			</form>
 		</div>
 	</div>
