@@ -3,9 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import model.Votes;
 
 public class VotesDAO {
 	// データソース
@@ -45,6 +48,36 @@ public class VotesDAO {
 		if (con != null) {
 			con.close();
 		}
+	}
+
+	public ArrayList<Votes> getRanking() {
+		ArrayList<Votes> historyList = new ArrayList<Votes>();
+		try {
+			connection();
+
+			String sql = "SELECT * FROM votes ORDER BY votes";
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Votes votes = new Votes();
+				votes.setBento_id(rs.getString("bento_id"));
+				votes.setComment(rs.getString("comment"));
+				votes.setVotes(rs.getString("votes"));
+
+				historyList.add(votes);
+			}
+		} catch (Exception e) {
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
+		}
+
+
+		return historyList;
+
 	}
 
 }

@@ -161,4 +161,5 @@ public class UserDAO {
 		// 全員分のデータが入ったlistをサーブレットに渡す
 		return voted_user;
 	}
+
 }
