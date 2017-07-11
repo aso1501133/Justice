@@ -95,28 +95,27 @@ public class VotesDAO {
 	}
 
 	/**
-	 * votesテーブルに一票追加
+	 * votesテーブルに1票追加
 	 */
-	public void setVote(String bento_id,int newvote) {
+	public void addVotes(String bento_id, String comment) {
 		try {
 			// DB接続
 			connection();
 			// INSERT文の設定・実行
 			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
 
-			String sql = "UPDATE votes SET votes=? WHERE bento_id = ?";
+			String sql = "INSERT INTO `votes` VALUES (?,?,'1');";
 
 			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
-			stmt.setInt(1, newvote);
-			stmt.setString(2, bento_id);
-
-			// sql文を実行
+			stmt.setString(1, bento_id);
+			stmt.setString(2, comment);
 			int cnt = stmt.executeUpdate();
 
 			// コミット
 			con.commit();
 
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		} finally {
 			try {
 				close();
