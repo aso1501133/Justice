@@ -162,4 +162,36 @@ public class UserDAO {
 		return voted_user;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Userテーブルを投票済に更新
+	 */
+	public void UpdateVote(String user_id) {
+		try {
+			// DB接続
+			connection();
+			// INSERT文の設定・実行
+			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
+
+			String sql = "UPDATE user SET vote=1 WHERE user_id = ?";
+
+			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
+			stmt.setString(1, user_id);
+
+			// sql文を実行
+			int cnt = stmt.executeUpdate();
+
+			// コミット
+			con.commit();
+
+		} catch (Exception e) {
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
+		}
+	}
+>>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
 }
