@@ -161,4 +161,34 @@ public class UserDAO {
 		// 全員分のデータが入ったlistをサーブレットに渡す
 		return voted_user;
 	}
+
+	/**
+	 * Userテーブルを投票済に更新
+	 */
+	public void UpdateVote(String user_id) {
+		try {
+			// DB接続
+			connection();
+			// INSERT文の設定・実行
+			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
+
+			String sql = "UPDATE user SET vote=1 WHERE user_id = ?";
+
+			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
+			stmt.setString(1, user_id);
+
+			// sql文を実行
+			int cnt = stmt.executeUpdate();
+
+			// コミット
+			con.commit();
+
+		} catch (Exception e) {
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
+		}
+	}
 }

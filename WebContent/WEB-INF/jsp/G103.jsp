@@ -6,6 +6,7 @@ comm:作品詳細画面
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common.jsp"%>
+<%@ page session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,7 @@ comm:作品詳細画面
 			</table>
 			<form action="<%=request.getContextPath()%>/ConfirmVote" method="post">
 			<div class="form-group">
-				<c:if test="${voted == '0'}" var="flg" />
+				<c:if test="${voted == 0}" var="flg" />
 				<c:if test="${flg}">
 					<!-- 未投票なら投票ボタン表示 -->
 					<input type="hidden" name="bento_id" value="${od.bento_id}">
@@ -35,7 +36,6 @@ comm:作品詳細画面
 					<input type="submit" name="vote" value="投票する">
 				</c:if>
 				</form>
-
 
 				<c:if test="${!flg}">
 					<!-- 投票済なら投票ボタンを表示しない -->
