@@ -24,25 +24,25 @@ comm:作品詳細画面
 						<td><img src="img/<c:out value="${od.image}" />.jpg"
 							width="500px"></td>
 					</tr>
-				</c:forEach>
 			</table>
-			<form action="<%=request.getContextPath()%>/VoteServlet" method="post">
+			<form action="<%=request.getContextPath()%>/ConfirmVote" method="post">
 			<div class="form-group">
 				<c:if test="${voted == '0'}" var="flg" />
 				<c:if test="${flg}">
 					<!-- 未投票なら投票ボタン表示 -->
-					<input type="hidden" name="obento_id" value="${od.obento_id}">
-
-					<input type="text" name="comment" size="30" maxlength="40" class="form-control" placeholder="ご感想をどうぞ">
-
+					<input type="hidden" name="bento_id" value="${od.bento_id}">
+					<textarea name="comment" id="comment" cols="45" rows="8" maxlength="40" placeholder="ご感想をどうぞ(40字以内)" class="form-control"></textarea>
 					<input type="submit" name="vote" value="投票する">
 				</c:if>
+				</form>
+
 
 				<c:if test="${!flg}">
 					<!-- 投票済なら投票ボタンを表示しない -->
 				</c:if>
+				</c:forEach>
 				</div>
-			</form>
+
 		</div>
 	</div>
 </body>

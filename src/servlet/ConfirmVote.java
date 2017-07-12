@@ -2,26 +2,27 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.VotesDAO;
-import model.Votes;
+import dao.ObentoDAO;
+import model.Obento;
 
 /**
- * Servlet implementation class VoteServlet
+ * Servlet implementation class ConfirmVote
  */
-@WebServlet("/VoteServlet")
-public class VoteServlet extends HttpServlet {
+@WebServlet("/ConfirmVote")
+public class ConfirmVote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VoteServlet() {
+    public ConfirmVote() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,11 +48,14 @@ public class VoteServlet extends HttpServlet {
 		String bento_id = request.getParameter("bento_id");
 		String comment = request.getParameter("comment");
 
-		VotesDAO votesDao = new VotesDAO();
-		Votes votes = new Votes();
+		ObentoDAO obentoDao = new ObentoDAO();
+		Obento obento = new Obento();
 
-		votesDao.addVotes(bento_id, comment);
-		//↑のSQLではbento_id1票ごとに1件の列が挿入されます。最終的な票の集計をするときはvotesが１の列が何件あるか集計するSQLをつくること
+		request.setAttribute("obentoDetail",obentoDao.selectObentoDetail(bento_id));
+		request.setAttribute("comment",comment);
+
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/G104.jsp");
+		rd.forward(request, response);
 	}
 
 }

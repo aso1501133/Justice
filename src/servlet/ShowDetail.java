@@ -47,6 +47,7 @@ public class ShowDetail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		System.out.println("bento_id:" + request.getParameter("bento_id"));
+
 		String bento_id = request.getParameter("bento_id");
 		ObentoDAO obentoDao = new ObentoDAO();
 		Obento obento = new Obento();
