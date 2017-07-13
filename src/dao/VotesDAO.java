@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -54,7 +51,7 @@ public class VotesDAO {
 		}
 	}
 
-<<<<<<< HEAD
+
 	public ArrayList<Votes> getRanking() {
 		ArrayList<Votes> historyList = new ArrayList<Votes>();
 		try {
@@ -82,8 +79,9 @@ public class VotesDAO {
 
 
 		return historyList;
+	}
 
-=======
+
 	/**
 	 * votesテーブルから現行票を検索
 	 */
@@ -155,7 +153,6 @@ public class VotesDAO {
 			} catch (Exception e) {
 			}
 		}
->>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
 	}
 
 }

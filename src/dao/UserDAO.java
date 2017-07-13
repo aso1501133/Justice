@@ -130,9 +130,9 @@ public class UserDAO {
 	/**
 	 * userテーブルから既に投票したユーザーの件数を表示
 	 */
-	public String CountVotedUser() {
+	public int CountVotedUser() {
 		// 件数を格納
-		String voted_user = "";
+		int voted_user = 0;
 		try {
 			// DB接続
 			connection();
@@ -148,9 +148,8 @@ public class UserDAO {
 			// データない場合はcatchに飛ぶ
 			rs.next();
 
-			voted_user = rs.getString("voted_user");
+			voted_user = rs.getInt("voted_user");
 		} catch (Exception e) {
-			voted_user = null;
 			System.out.println("muri");
 		} finally {
 			try {
@@ -162,8 +161,7 @@ public class UserDAO {
 		return voted_user;
 	}
 
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Userテーブルを投票済に更新
 	 */
@@ -193,5 +191,39 @@ public class UserDAO {
 			}
 		}
 	}
->>>>>>> branch 'master' of https://github.com/aso1501133/Justice.git
+
+	/**
+	 * userテーブルからユーザーの件数を表示
+	 */
+	public int CountUsers() {
+		// 件数を格納
+		int users = 0;
+		try {
+			// DB接続
+			connection();
+			// SQL文設定の準備・SQL文の実行
+			String sql = "SELECT COUNT(*) as users FROM user;";
+
+			stmt = con.prepareStatement(sql);// sql文をプリコンパイルした状態で保持
+
+			// sql文を実行
+			rs = stmt.executeQuery();
+
+			// 1件目のデータにカーソルをあわせる
+			// データない場合はcatchに飛ぶ
+			rs.next();
+
+			users = rs.getInt("users");
+		} catch (Exception e) {
+			System.out.println("muri");
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+			}
+		}
+		// 全員分のデータが入ったlistをサーブレットに渡す
+		return users;
+	}
+
 }
