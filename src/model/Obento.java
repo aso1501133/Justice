@@ -5,6 +5,13 @@ public class Obento {
 	private String bento_name = "";
 	private String user_id = "";
 	private String image = "";
+	private int votes  = 0;
+	public int getVotes() {
+		return votes;
+	}
+	public void setVotes(int votes) {
+		this.votes = votes;
+	}
 	public String getBento_id() {
 		return bento_id;
 	}

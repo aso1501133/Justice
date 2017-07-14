@@ -1,8 +1,8 @@
 package model;
 public class Votes {
 	private String bento_id = "";
+	private String user_id = "";
 	private String comment = "";
-	private String votes = "";
 	public String getBento_id() {
 		return bento_id;
 	}
@@ -15,10 +15,10 @@ public class Votes {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getVotes() {
-		return votes;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setVotes(String votes) {
-		this.votes = votes;
+	public void setUser_id(String user_id) {
+		this.user_id= user_id;
 	}
 }

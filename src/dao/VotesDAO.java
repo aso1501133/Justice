@@ -52,40 +52,41 @@ public class VotesDAO {
 	}
 
 
-	public ArrayList<Votes> getRanking() {
-		ArrayList<Votes> historyList = new ArrayList<Votes>();
+	/**
+	 * votesテーブルにコメント等を格納
+	 */
+	public void insertComment(String bento_id,String user_id,String comment){
 		try {
+			// DB接続
 			connection();
+			// INSERT文の設定・実行
+			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
 
-			String sql = "SELECT * FROM votes ORDER BY votes";
-			stmt = con.prepareStatement(sql);
-			rs = stmt.executeQuery();
+			String sql = "INSERT INTO `schedule` VALUES (?,?,?);";
 
-			while (rs.next()) {
-				Votes votes = new Votes();
-				votes.setBento_id(rs.getString("bento_id"));
-				votes.setComment(rs.getString("comment"));
-				votes.setVotes(rs.getString("votes"));
+			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
+			stmt.setString(1, bento_id);
+			stmt.setString(2, user_id);
+			stmt.setString(3, comment);
+			int cnt = stmt.executeUpdate();
 
-				historyList.add(votes);
-			}
+			// コミット
+			con.commit();
+
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		} finally {
 			try {
 				close();
 			} catch (Exception e) {
 			}
 		}
-
-
-		return historyList;
 	}
 
-
 	/**
-	 * votesテーブルから現行票を検索
+	 * votesテーブルから結果発表用にコメント等を取得
 	 */
-	public List<Votes> selectVotes(String bento_id){
+	public List<Votes> selectRankDetail(String bento_id){
 		// スケジュール情報を格納
 		// ▼▼List（大きさが決まっていない配列のようなもの）、メッセージ格納用変数 準備
 		List<Votes> list = new ArrayList<Votes>();
@@ -104,11 +105,12 @@ public class VotesDAO {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Votes vo = new Votes();
+				Votes vo = new Votes ();
 				// 1件分のデータをBeanに格納し、それをListに入れてjspに渡す
 				// DBから取得したデータをObentoオブジェクトに格納
 				vo.setBento_id(rs.getString("bento_id"));
-				vo.setVotes(rs.getString("votes"));
+				vo.setUser_id(rs.getString("user_id"));
+				vo.setComment(rs.getString("comment"));
 				list.add(vo);
 			}
 		} catch (Exception e) {
@@ -125,34 +127,5 @@ public class VotesDAO {
 		return list;
 	}
 
-	/**
-	 * votesテーブルに1票追加
-	 */
-	public void addVotes(String bento_id, String comment) {
-		try {
-			// DB接続
-			connection();
-			// INSERT文の設定・実行
-			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
-
-			String sql = "INSERT INTO `votes` VALUES (?,?,'1');";
-
-			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
-			stmt.setString(1, bento_id);
-			stmt.setString(2, comment);
-			int cnt = stmt.executeUpdate();
-
-			// コミット
-			con.commit();
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			try {
-				close();
-			} catch (Exception e) {
-			}
-		}
-	}
 
 }

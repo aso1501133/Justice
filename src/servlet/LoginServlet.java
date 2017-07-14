@@ -27,8 +27,6 @@ public class LoginServlet extends HttpServlet {
 	 *      response)
 	 */
 
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -76,7 +74,6 @@ public class LoginServlet extends HttpServlet {
 							// セッションスコープにログインユーザー情報を保存
 							session.setAttribute("loginUser", us.getUser_id());
 							session.setAttribute("voted", us.getVote());
-
 							request.setAttribute("obentoList",obentoDao.selectAllObento());
 
 						}else if(us != null && voted_users == allUsers){	//全員投票済みならG301に遷移
@@ -84,8 +81,8 @@ public class LoginServlet extends HttpServlet {
 							// セッションスコープにログインユーザー情報を保存
 							session.setAttribute("loginUser", us.getUser_id());
 							session.setAttribute("voted", us.getVote());
-
 							request.setAttribute("obentoList",obentoDao.selectAllObento());
+
 						} else { // 不一致なら
 							request.setAttribute("alart"," no");
 							path = "WEB-INF/index.jsp";
