@@ -72,9 +72,13 @@ public class VoteServlet extends HttpServlet {
 		userDao.UpdateVote(user_id);
 		session.setAttribute("votes", us.getVote());
 
+		System.out.println("kakunin:"+bento_id);
 		//お弁当テーブルの票数を1票追加
-		int now_vote = obentoDao.getObentoVotes(bento_id);
+		int now_vote = Integer.parseInt(obentoDao.getObentoVotes(bento_id));
+		System.out.println("now_vote:"+now_vote);
+
 		int new_vote = now_vote + 1 ;
+		System.out.println("新しい票数："+new_vote);
 		obentoDao.updateObentoVotes(bento_id,new_vote);
 		votesDao.insertComment(bento_id,user_id,comment);
 

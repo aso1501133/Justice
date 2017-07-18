@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -77,11 +78,17 @@ public class LoginServlet extends HttpServlet {
 							request.setAttribute("obentoList",obentoDao.selectAllObento());
 
 						}else if(us != null && voted_users == allUsers){	//全員投票済みならG301に遷移
+							System.out.println("全員投票済み");
 							path = "WEB-INF/jsp/G301.jsp";
 							// セッションスコープにログインユーザー情報を保存
 							session.setAttribute("loginUser", us.getUser_id());
 							session.setAttribute("voted", us.getVote());
-							request.setAttribute("obentoList",obentoDao.selectAllObento());
+							request.setAttribute("obentoRanking",obentoDao.getObentoRanking());
+							//▼▼▼中身確認▼▼▼
+							  List<Obento> lit = obentoDao.getObentoRanking();
+							  for(Obento lit2 : lit){
+							  System.out.println("順位"+lit2.getBento_name());
+							  }
 
 						} else { // 不一致なら
 							request.setAttribute("alart"," no");

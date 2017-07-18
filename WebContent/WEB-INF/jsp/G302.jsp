@@ -24,6 +24,7 @@ comm:結果詳細
 						<td><img src="img/<c:out value="${od.image}" />.jpg" width="500px"></td>
 					</tr>
 				</c:forEach>
+				<p>頂いたコメント：</p>
 				<c:forEach var="rd" items="${RankDetail}" varStatus="status">
 					<tr>
 						<td><c:out value="${rd.comment}" /></td>

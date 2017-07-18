@@ -62,7 +62,7 @@ public class VotesDAO {
 			// INSERT文の設定・実行
 			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
 
-			String sql = "INSERT INTO `schedule` VALUES (?,?,?);";
+			String sql = "INSERT INTO `votes` VALUES (?,?,?);";
 
 			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
 			stmt.setString(1, bento_id);

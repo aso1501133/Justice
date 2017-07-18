@@ -138,8 +138,9 @@ public class ObentoDAO {
 	/**
 	 * obentoテーブルから現在の票数を検索
 	 */
-	public int getObentoVotes(String bento_id){
-		int votes = 0;
+
+	public String getObentoVotes(String bento_id){
+		String votes = "";
 
 		try {
 			// DB接続
@@ -154,9 +155,12 @@ public class ObentoDAO {
 			// sql文を実行
 			rs = stmt.executeQuery();
 
-			votes = rs.getInt("votes");
+			while (rs.next()) {
+				votes = rs.getString("votes");
+			}
 		} catch (Exception e) {
-			System.out.println("muri");
+			votes = null;
+			System.out.println("getObentoVotes:null");
 		} finally {
 			try {
 				close();
@@ -166,6 +170,7 @@ public class ObentoDAO {
 		// 全員分のデータが入ったlistをサーブレットに渡す
 		return votes;
 	}
+
 
 	/**
 	 * obentoテーブルから票数1票追加
@@ -177,7 +182,7 @@ public class ObentoDAO {
 			// INSERT文の設定・実行
 			// INパラメータ(プレースホルダー)の使用例。サニタイジングのために使おう！
 
-			String sql = "UPDATE obento SET =new_vote WHERE bento_id = ? ";
+			String sql = "UPDATE obento SET votes = ? WHERE bento_id = ? ";
 
 			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
 			stmt.setInt(1, new_vote);
@@ -210,7 +215,7 @@ public class ObentoDAO {
 			// DB接続
 			connection();
 			// SQL文設定の準備・SQL文の実行
-			String sql = "SELECT * FROM obento ORDER BY DESC;";
+			String sql = "SELECT * FROM obento ORDER BY votes DESC;";
 			stmt = con.prepareStatement(sql); // sql文をプリコンパイルした状態で保持
 
 			// sql文を実行
