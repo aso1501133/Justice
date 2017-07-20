@@ -34,7 +34,9 @@ function linkclick (num) {
     margin: 0 auto;
     margin-top:30px;">
     <form name="formA" method="post" action="<%=request.getContextPath()%>/RankDetail">
-    <% int i=1; %>
+    <% int i=1;
+    String b = String.valueOf(i);
+    %>
     <c:forEach var="ol" items="${obentoRanking}" varStatus="status">
     <div style="width:100%;
 	height:250px;
@@ -50,9 +52,17 @@ function linkclick (num) {
 	margin-left:20px;
 	">
 	<p style="margin-left:30px;">
-	<% out.print(i+"位");
-	i=i+1;
+	<%
+	if(i<=3){
 	%>
+	<img src="img/<%=b%>i.png" width="100">
+	<% i=Integer.parseInt(b);
+	}else{
+		out.print(i);
+		i=Integer.parseInt(b);
+	}
+	%>
+
 	<p>
 	</div>
 	<p style="margin-left:380px;
