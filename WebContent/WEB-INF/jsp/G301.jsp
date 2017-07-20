@@ -22,7 +22,7 @@ function linkclick (num) {
 }
 </script>
 </head>
-<body>
+<body background="img/d.jpg"style="">
 <div style=" width: 60%;
     margin: 0 auto;
     text-align: center;
