@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+#headerArea{
+background-color:#778899;
+color:#000000;
+height:52px;
+}
+a.header{
+padding:5px;
+color:#000000;
+}
