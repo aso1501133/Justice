@@ -35,9 +35,11 @@ function linkclick (num) {
     margin-top:30px;">
     <form name="formA" method="post" action="<%=request.getContextPath()%>/RankDetail">
     <% int i=1;
-    String b = String.valueOf(i);
     %>
     <c:forEach var="ol" items="${obentoRanking}" varStatus="status">
+    <%
+    String b = String.valueOf(i);
+    %>
     <div style="width:100%;
 	height:250px;
 	background:white;
@@ -57,9 +59,11 @@ function linkclick (num) {
 	%>
 	<img src="img/<%=b%>i.png" width="100">
 	<% i=Integer.parseInt(b);
+	i=i+1;
 	}else{
 		out.print(i);
 		i=Integer.parseInt(b);
+		i=i+1;
 	}
 	%>
 
