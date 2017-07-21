@@ -10,7 +10,7 @@
 </script>
 </head>
 
-<body background="img/login.jpg"style="background-size: cover;">
+<body background="img/syou.jpg"style="background-size: cover;">
 
 <div class="container"></div>
 	<div style="background:#F2F2F2;
