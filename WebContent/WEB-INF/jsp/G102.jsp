@@ -22,7 +22,7 @@ function linkclick (num) {
 }
 </script>
 </head>
-<body>
+<body background="img/d.jpg" style="background-size:cover;">
 	<div class="col-sm-11">
 		<br>
 		<form name="formA" method="post" action="<%=request.getContextPath()%>/ShowDetail">
