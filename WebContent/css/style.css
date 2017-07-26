@@ -9,3 +9,27 @@ a.header{
 padding:5px;
 color:#000000;
 }
+#img{
+text-align: left;
+margin-left: 30px;
+width: 400px;
+height: 300px;
+}
+#backArea{
+background: #F2F2F2;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+margin: auto;
+width: 60%;
+height: 60%;
+background: rgba(255, 255, 255, 0.5);
+border-radius: 20px;
+}
+#comment{
+text-align: right;
+margin-right: 12px;
+margin-top: -150px;
+}
