@@ -11,7 +11,7 @@ comm:作品選択画面
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="WebContent/bootstrap.min.css"/>
+<link rel="stylesheet" href="/WebContent/bootstrap.min.css"/>
 
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -22,6 +22,17 @@ comm:作品選択画面
 		document.formA.submit();
 	}
 </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38964707-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
 </head>
 <body background="img/d.jpg" style="background-size: cover;">
 	<div class="col-sm-11">
@@ -31,9 +42,8 @@ comm:作品選択画面
 			<table class="table table-bordered" cellpadding="0">
 				<%-- テーブルは上手いこと綺麗に並ぶようにいじってください --%>
 				<c:forEach var="ol" items="${obentoList}" varStatus="status">
-					<tr>
-						<td><c:out value="${ol.bento_name}" /></td>
-					</tr>
+				<section class="site_box">
+				 <div class="site_box_border">
 					<tr>
 						<td>
 							<a href="javascript:void(0);" onclick="javascript:linkclick('${ol.bento_id}')">>
@@ -49,6 +59,8 @@ comm:作品選択画面
 								</h2></td>
 
 					</tr>
+				
+				</section>
 				</c:forEach>
 			</table>
 			<input type="hidden" name="bento_id" value="${ol.bento_id}"
