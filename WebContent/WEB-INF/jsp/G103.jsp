@@ -28,8 +28,7 @@ comm:作品詳細画面
 						<img src="img/<c:out value="${od.image}" />.jpg" width="500px">
 					</div>
 					<div id="comment">
-					<form action="<%=request.getContextPath()%>/ConfirmVote"
-						method="post">
+					<form action="<%=request.getContextPath()%>/ConfirmVote" method="post">
 						<div class="form-group">
 							<c:if test="${voted == 0}" var="flg" />
 							<c:if test="${flg}">
@@ -51,7 +50,6 @@ comm:作品詳細画面
 					</c:if>
 				</c:forEach>
 			</div>
-
 		</div>
 	</div>
 </body>
