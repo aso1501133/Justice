@@ -26,10 +26,16 @@ comm:作品選択画面
 <style type="text/css">
 
 html{
-    height:100%;
+    height:auto;
+    margin:0px;
 }
 body{
-    height:100%;
+    height:auto;
+    margin:0px;
+}
+#main{
+	height:auto;
+	overflow:auto;
 }
 .table {
 	text-align: center;
@@ -55,12 +61,15 @@ body{
 #main{
 	height:auto;
 }
+h1{
+	text-align:center;
+}
 
 </style>
 
 </head>
-<body background="img/d.jpg">
-		<div class="gundam">
+<body background="img/d.jpg"style="background-size: cover;">
+		<div class="gundam" id="main">
 		<h1>画像をクリックすると投票画面に遷移します</h1>
 		<br>
 		<form name="formA" method="post"
