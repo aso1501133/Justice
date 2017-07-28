@@ -11,7 +11,8 @@ comm:作品選択画面
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/WebContent/bootstrap.min.css"/>
+<!-- <link rel="stylesheet" href="/WebContent/bootstrap.min.css" /> -->
+<!-- <link rel="stylesheet" href="/WebContent/css/style.css"/> -->
 
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -22,46 +23,73 @@ comm:作品選択画面
 		document.formA.submit();
 	}
 </script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<style type="text/css">
 
-  ga('create', 'UA-38964707-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
+html{
+    height:100%;
+}
+body{
+    height:100%;
+}
+.table {
+	text-align: center;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
 
-</script>
+
+.gundam{background:#F2F2F2;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width:70%;height:70%;
+	background: rgba(255,255,255,0.75);
+	border-radius: 20px;
+	height:100%;
+	min-height:100%;
+}
+#main{
+	height:auto;
+}
+
+</style>
+
 </head>
-<body background="img/d.jpg" style="background-size: cover;">
-	<div class="col-sm-11">
+<body background="img/d.jpg">
+		<div class="gundam">
+		<h1>画像をクリックすると投票画面に遷移します</h1>
 		<br>
 		<form name="formA" method="post"
 			action="<%=request.getContextPath()%>/ShowDetail">
-			<table class="table table-bordered" cellpadding="0">
+			<table class="table table-bordered" cellpadding="0" style="text-align:center;">
 				<%-- テーブルは上手いこと綺麗に並ぶようにいじってください --%>
-				<c:forEach var="ol" items="${obentoList}" varStatus="status">
-				<section class="site_box">
-				 <div class="site_box_border">
-					<tr>
-						<td>
-							<a href="javascript:void(0);" onclick="javascript:linkclick('${ol.bento_id}')">>
-								<div class="site_box_pic">
-									<span class="pic_shadow"></span> 
-									<img width="500" height="390"src="img/<c:out value="${ol.image}" />.jpg" width="150px"></a>
-								</div>
-						</a>
-
-							<div class="contenthover">
-								<h2 class="hover_name">
-									<a href="javascript:void(0);" target="_blank"><c:out value="${ol.bento_name}" /></a>
-								</h2></td>
-
-					</tr>
 				
-				</section>
-				</c:forEach>
+					<c:forEach var="ol" items="${obentoList}" varStatus="status">
+					
+						
+						<tr>
+						<section class="site_box">
+						<div class="1">
+						
+							<td><a href="javascript:void(0);"
+								onclick="javascript:linkclick('${ol.bento_id}')">
+									 <img width="500" height="390"
+											src="img/<c:out value="${ol.image}" />.jpg" width="150px">
+							</a>
+						</div>
+
+							<h2 class="hover_name">
+								<c:out value="${ol.bento_name}" /></a>
+							</h2>
+						</section>
+						</tr>
+					
+					</c:forEach>
+				
 			</table>
 			<input type="hidden" name="bento_id" value="${ol.bento_id}"
 				id="bento_id">

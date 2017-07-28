@@ -33,3 +33,12 @@ text-align: right;
 margin-right: 12px;
 margin-top: -150px;
 }
+section{
+	text-align:center;
+}
+table{
+	text-align:center;
+}
+div.col-sm-11{
+	textalign:center;
+}
